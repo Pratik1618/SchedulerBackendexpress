@@ -1,9 +1,9 @@
 const express = require('express');
 const Client = require('../model/client')
 const router = express.Router();
+const adminAuthMiddleware = require('../authMiddleware/adminAuthMiddleware')
 
-
-router.post('/createClient', async (req, res) => {
+router.post('/createClient',adminAuthMiddleware, async (req, res) => {
     const { clientName } = req.body;
 
     if (!clientName) {
