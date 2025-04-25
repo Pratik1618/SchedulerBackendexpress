@@ -26,6 +26,15 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         unique: true,
         required: [true, 'Number is required'],
+    },
+    Otp:{
+        type: String,
+       
+        default:null,
+    },
+    OtpGeneratedAt:{
+        type: Date,
+        default:null
     }
 });
 
