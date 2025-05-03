@@ -62,7 +62,9 @@ router.post('/addStore', async (req, res) => {
 
 router.get('/stores', async (req, res) => {
     try {
-        const stores = await Store.find();
+        const stores = await Store.find()
+        .populate('storeManagerId', 'name')
+        .populate('clientId','clientName');
         res.status(200).json(stores);
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
@@ -70,16 +72,3 @@ router.get('/stores', async (req, res) => {
 })
 
 module.exports = router;
-
-// router.get('/stores/:id', async (req, res) => {
-//     try {
-//         const store = await Store.findById(req.params.id);
-//         if (!store) {
-//             return res.status(404).json({ message: 'Store not found' });
-//         }
-//         res.status(200).json(store);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Server error', error: error.message });
-//     }
-// });
-//
