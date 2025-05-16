@@ -6,6 +6,8 @@ const ClientRoute = require('./routes/ClientRoute');
 const LoginRoute = require('./authRoutes/LoginRoutes')
 const StoreRoute = require('./routes/addStoreRoute')
 const ScheduleRoute = require('./routes/scheduleRoute')
+const FormRoute = require('./routes/FormRoute')
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -23,6 +25,7 @@ app.use(ClientRoute);
 app.use(LoginRoute);
 app.use(StoreRoute);
 app.use(ScheduleRoute);
+app.use(FormRoute)
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
