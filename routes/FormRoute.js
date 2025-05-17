@@ -31,9 +31,20 @@ router.post('/addForm',async(req,res)=>{
 })
 
 
-router.get('getForms',async (req,res)=>{
+router.get('/getForms',async (req,res)=>{
     const forms = await Form.find();
     res.json(forms)
 })
+
+router.get('/getForm/:id',async (req,res)=>{
+    try{
+    const form = await Form.findById(req.params.id);
+    if(!form) return res.status(404).json({message:'form not found'})
+res.json(form);
+}catch(err){
+console.log(err);
+return res.status(500).json({message:'Error fetching Form'})
+}
+    })
 
 module.exports = router;
